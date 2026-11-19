@@ -1,0 +1,21 @@
+# Godot 4+ : dossier de cache généré automatiquement
+.godot/
+
+# Builds Android
+/android/
+
+# Projets C# (.NET) : fichiers générés
+.mono/
+data_*/
+mono_crash.*.json
+
+# Exports du jeu (dossier à créer pour tes builds)
+/export/
+/build/
+
+# Fichiers du système et des éditeurs
+.DS_Store
+Thumbs.db
+.vs/
+.vscode/
+*.tmp
