@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
 size = Vector2(130, 125)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fogsc"]
+radius = 100.0
+
 [node name="Node2D" type="Node2D" unique_id=1016489502]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2038438553]
@@ -22,3 +25,18 @@ shape = SubResource("RectangleShape2D_qbywb")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1920080040]
 position = Vector2(3, 1)
 position_smoothing_enabled = true
+
+[node name="ZoneRecolte" type="Area2D" parent="Player" unique_id=883342280]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/ZoneRecolte" unique_id=1134535385]
+shape = SubResource("CircleShape2D_fogsc")
+one_way_collision_margin = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1152239012]
+
+[node name="LabelBois" type="Label" parent="Player/CanvasLayer" unique_id=2126931114]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 43.0
+text = "Bois : 0"

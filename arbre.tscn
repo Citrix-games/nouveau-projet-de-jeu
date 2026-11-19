@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bdmgiprjrkonc"]
 
 [ext_resource type="Texture2D" uid="uid://dyf2tlsdgaykh" path="res://icon.svg" id="1_gablb"]
+[ext_resource type="Script" uid="uid://datkrhm1u5of4" path="res://arbre.gd" id="1_qn361"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
 size = Vector2(62, 66)
@@ -8,6 +9,7 @@ size = Vector2(62, 66)
 [node name="Node2D" type="Node2D" unique_id=1106444363]
 
 [node name="Arbre" type="StaticBody2D" parent="." unique_id=1433003394]
+script = ExtResource("1_qn361")
 
 [node name="Sprite2D" type="Sprite2D" parent="Arbre" unique_id=1157075723]
 modulate = Color(0.023529412, 0.3372549, 0.0627451, 1)
