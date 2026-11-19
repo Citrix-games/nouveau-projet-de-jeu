@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dx4cocsqg0cx3"]
+
+[ext_resource type="Script" uid="uid://datkrhm1u5of4" path="res://arbre.gd" id="1_ba4y3"]
+[ext_resource type="Texture2D" uid="uid://dyf2tlsdgaykh" path="res://icon.svg" id="2_i8bog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
+size = Vector2(62, 66)
+
+[node name="Node2D" type="Node2D" unique_id=1106444363]
+
+[node name="Rocher" type="StaticBody2D" parent="." unique_id=1433003394]
+script = ExtResource("1_ba4y3")
+type_ressource = "pierre"
+
+[node name="Sprite2D" type="Sprite2D" parent="Rocher" unique_id=1157075723]
+modulate = Color(0.17750391, 0.19062287, 0.18075523, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_i8bog")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rocher" unique_id=1326647692]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_qbywb")

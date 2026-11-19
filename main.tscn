@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b035fodg8tfp7" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bdmgiprjrkonc" path="res://arbre.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dx4cocsqg0cx3" path="res://rocher.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=720858159]
 position = Vector2(-13, 0)
@@ -31,3 +32,15 @@ position = Vector2(331, 4)
 
 [node name="Node2D6" parent="." unique_id=1067435774 instance=ExtResource("2_0xm2m")]
 position = Vector2(216, 304)
+
+[node name="Node2D7" parent="." unique_id=182906390 instance=ExtResource("3_h2yge")]
+position = Vector2(251, -425)
+
+[node name="Node2D8" parent="." unique_id=82878268 instance=ExtResource("3_h2yge")]
+position = Vector2(45, -341)
+
+[node name="Node2D9" parent="." unique_id=1738166664 instance=ExtResource("3_h2yge")]
+position = Vector2(251, -278)
+
+[node name="Node2D10" parent="." unique_id=1766619491 instance=ExtResource("3_h2yge")]
+position = Vector2(508, -445)
