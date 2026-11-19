@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bdmgiprjrkonc"]
+
+[ext_resource type="Texture2D" uid="uid://dyf2tlsdgaykh" path="res://icon.svg" id="1_gablb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
+size = Vector2(62, 66)
+
+[node name="Node2D" type="Node2D" unique_id=1106444363]
+
+[node name="Arbre" type="StaticBody2D" parent="." unique_id=1433003394]
+
+[node name="Sprite2D" type="Sprite2D" parent="Arbre" unique_id=1157075723]
+modulate = Color(0.023529412, 0.3372549, 0.0627451, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gablb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arbre" unique_id=1326647692]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_qbywb")
