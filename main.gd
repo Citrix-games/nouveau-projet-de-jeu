@@ -2,6 +2,7 @@ extends Node2D
 
 const SCENE_ARBRE = preload("res://arbre.tscn")
 const SCENE_ROCHER = preload("res://rocher.tscn")
+const SCENE_BUISSON = preload("res://buisson.tscn")
 
 @export var graine: int = 0
 @export var demi_taille_carte: float = 1900.0
@@ -15,6 +16,9 @@ const SCENE_ROCHER = preload("res://rocher.tscn")
 @export var nb_amas_pierre: int = 5
 @export var pierres_par_amas: int = 6
 @export var rayon_amas: float = 150.0
+@export var nb_buissons: int = 6
+@export var baies_par_groupe: int = 4
+@export var rayon_buissons: float = 120.0
 
 var rng = RandomNumberGenerator.new()
 var positions_occupees: Array = []
@@ -26,6 +30,7 @@ func _ready():
 		rng.seed = graine
 	generer_groupes(SCENE_ARBRE, nb_forets, arbres_par_foret, rayon_foret)
 	generer_groupes(SCENE_ROCHER, nb_amas_pierre, pierres_par_amas, rayon_amas)
+	generer_groupes(SCENE_BUISSON, nb_buissons, baies_par_groupe, rayon_buissons)
 
 func generer_groupes(scene: PackedScene, nb_groupes: int, objets_par_groupe: int, rayon: float):
 	for i in nb_groupes:

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c2cfyppyo2ni2"]
+
+[ext_resource type="Script" uid="uid://datkrhm1u5of4" path="res://arbre.gd" id="1_6w0ru"]
+[ext_resource type="Texture2D" uid="uid://dyf2tlsdgaykh" path="res://icon.svg" id="2_aslwx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
+size = Vector2(62, 66)
+
+[node name="Node2D" type="Node2D" unique_id=1106444363]
+
+[node name="Buisson" type="StaticBody2D" parent="." unique_id=1433003394]
+script = ExtResource("1_6w0ru")
+type_ressource = "baie"
+vie = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Buisson" unique_id=1157075723]
+modulate = Color(0.95217925, 0.27511883, 0.32744294, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_aslwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buisson" unique_id=1326647692]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_qbywb")

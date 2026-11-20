@@ -4,6 +4,12 @@ const SCENE_MUR = preload("res://mur.tscn")
 const TAILLE_GRILLE = 64
 
 @export var speed: float = 200.0
+@export var faim_max: float = 100.0
+@export var vitesse_faim: float = 1.0
+@export var nourriture_baie: float = 25.0
+@export var manque_min_pour_manger: float = 10.0
+
+var faim: float = 100.0
 var inventaire: Dictionary = {}
 var direction_regard: Vector2 = Vector2.DOWN
 var murs_poses: Array = []
@@ -17,17 +23,23 @@ var recettes: Dictionary = {
 @onready var zone_recolte = $ZoneRecolte
 @onready var label_bois = $CanvasLayer/LabelBois
 @onready var indicateur = $Indicateur
+@onready var barre_faim = $CanvasLayer/BarreFaim
 
 func _ready():
+	faim = faim_max
+	barre_faim.max_value = faim_max
+	barre_faim.value = faim
 	afficher_inventaire()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction != Vector2.ZERO:
 		direction_regard = direction.normalized()
 	velocity = direction * speed
 	move_and_slide()
 	mettre_a_jour_indicateur()
+	faim = maxf(faim - vitesse_faim * delta, 0.0)
+	barre_faim.value = faim
 
 func _unhandled_input(event):
 	if event.is_action_pressed("interagir"):
@@ -39,6 +51,8 @@ func _unhandled_input(event):
 			fabriquer("hache")
 		elif event.keycode == KEY_B:
 			poser_mur()
+		elif event.keycode == KEY_F:
+			manger()
 
 func recolter():
 	for corps in zone_recolte.get_overlapping_bodies():
@@ -52,6 +66,19 @@ func recolter():
 
 func ajouter_objet(nom: String, quantite: int):
 	inventaire[nom] = inventaire.get(nom, 0) + quantite
+	afficher_inventaire()
+
+func manger():
+	if inventaire.get("baie", 0) < 1:
+		print("Pas de baie à manger")
+		return
+	if faim_max - faim < manque_min_pour_manger:
+		print("Pas assez faim pour manger")
+		return
+	inventaire["baie"] -= 1
+	if inventaire["baie"] == 0:
+		inventaire.erase("baie")
+	faim = minf(faim + nourriture_baie, faim_max)
 	afficher_inventaire()
 
 func peut_fabriquer(nom: String) -> bool:
@@ -104,6 +131,7 @@ func afficher_inventaire():
 		texte += nom + " : " + str(inventaire[nom]) + "\n"
 	if texte == "":
 		texte = "Inventaire vide\n"
-	texte += "\n--- Craft ---\n[1] planche : 2 bois\n[2] hache : 3 bois + 2 pierre"
+	texte += "\n--- Actions ---\n[E] récolter\n[F] manger une baie"
+	texte += "\n\n--- Craft ---\n[1] planche : 2 bois\n[2] hache : 3 bois + 2 pierre"
 	texte += "\n[B] poser un mur : 1 planche"
 	label_bois.text = texte
