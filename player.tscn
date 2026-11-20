@@ -14,7 +14,7 @@ radius = 100.0
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2038438553]
 motion_mode = 1
 script = ExtResource("1_onrkg")
-vitesse_faim = 0.2
+vitesse_faim = 0.5
 
 [node name="Indicateur" type="Sprite2D" parent="Player" unique_id=787077132]
 scale = Vector2(0.5, 0.5)
@@ -52,3 +52,36 @@ offset_top = 600.0
 offset_right = 210.0
 offset_bottom = 627.0
 value = 100.0
+
+[node name="BarreVie" type="ProgressBar" parent="Player/CanvasLayer" unique_id=1238088773]
+offset_left = 10.0
+offset_top = 550.0
+offset_right = 210.0
+offset_bottom = 577.0
+value = 100.0
+
+[node name="EcranGameOver" type="ColorRect" parent="Player/CanvasLayer" unique_id=1633228010]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07450981, 0.07450981, 0.07450981, 0.67058825)
+
+[node name="CenterContainer" type="CenterContainer" parent="Player/CanvasLayer/EcranGameOver" unique_id=1342898918]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/CanvasLayer/EcranGameOver/CenterContainer" unique_id=1500993927]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Player/CanvasLayer/EcranGameOver/CenterContainer/VBoxContainer" unique_id=671089882]
+layout_mode = 2
+
+[node name="BoutonRecommencer" type="Button" parent="Player/CanvasLayer/EcranGameOver/CenterContainer/VBoxContainer" unique_id=968167270]
+layout_mode = 2
+text = "Recommencer"

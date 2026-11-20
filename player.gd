@@ -8,8 +8,13 @@ const TAILLE_GRILLE = 64
 @export var vitesse_faim: float = 1.0
 @export var nourriture_baie: float = 25.0
 @export var manque_min_pour_manger: float = 10.0
+@export var vie_max: float = 100.0
+@export var degats_faim: float = 5.0
+@export var regen_vie: float = 1.0
 
 var faim: float = 100.0
+var vie: float = 100.0
+var est_mort: bool = false
 var inventaire: Dictionary = {}
 var direction_regard: Vector2 = Vector2.DOWN
 var murs_poses: Array = []
@@ -24,24 +29,56 @@ var recettes: Dictionary = {
 @onready var label_bois = $CanvasLayer/LabelBois
 @onready var indicateur = $Indicateur
 @onready var barre_faim = $CanvasLayer/BarreFaim
+@onready var barre_vie = $CanvasLayer/BarreVie
+@onready var ecran_game_over = $CanvasLayer/EcranGameOver
+@onready var bouton_recommencer = $CanvasLayer/EcranGameOver/CenterContainer/VBoxContainer/BoutonRecommencer
 
 func _ready():
 	faim = faim_max
+	vie = vie_max
 	barre_faim.max_value = faim_max
 	barre_faim.value = faim
+	barre_vie.max_value = vie_max
+	barre_vie.value = vie
+	ecran_game_over.visible = false
+	bouton_recommencer.pressed.connect(recommencer)
 	afficher_inventaire()
 
 func _physics_process(delta):
+	if est_mort:
+		return
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction != Vector2.ZERO:
 		direction_regard = direction.normalized()
 	velocity = direction * speed
 	move_and_slide()
 	mettre_a_jour_indicateur()
+	gerer_survie(delta)
+
+func gerer_survie(delta):
 	faim = maxf(faim - vitesse_faim * delta, 0.0)
 	barre_faim.value = faim
+	if faim <= 0.0:
+		vie -= degats_faim * delta
+	elif faim >= faim_max * 0.5:
+		vie += regen_vie * delta
+	vie = clampf(vie, 0.0, vie_max)
+	barre_vie.value = vie
+	if vie <= 0.0:
+		mourir()
+
+func mourir():
+	est_mort = true
+	velocity = Vector2.ZERO
+	indicateur.visible = false
+	ecran_game_over.visible = true
+
+func recommencer():
+	get_tree().reload_current_scene()
 
 func _unhandled_input(event):
+	if est_mort:
+		return
 	if event.is_action_pressed("interagir"):
 		recolter()
 	elif event is InputEventKey and event.pressed and not event.echo:
