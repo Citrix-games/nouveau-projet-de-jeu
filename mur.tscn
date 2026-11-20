@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqb4txu2s07dm"]
+
+[ext_resource type="Texture2D" uid="uid://dyf2tlsdgaykh" path="res://icon.svg" id="1_cakvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbywb"]
+size = Vector2(64, 64)
+
+[node name="Node2D" type="Node2D" unique_id=1526509584]
+
+[node name="Mur" type="StaticBody2D" parent="." unique_id=1009902653]
+
+[node name="Sprite2D" type="Sprite2D" parent="Mur" unique_id=1973978417]
+modulate = Color(0.54509807, 0.3529412, 0.16862746, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_cakvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mur" unique_id=348626368]
+position = Vector2(0, 1.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_qbywb")
