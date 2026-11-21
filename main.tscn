@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bp6fc0nv1s0g6" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b035fodg8tfp7" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dh4qo8j5yjhy0" path="res://cycle_jour_nuit.gd" id="3_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=720858159]
 position = Vector2(-13, 0)
@@ -17,3 +18,6 @@ offset_top = -2137.0
 offset_right = 1683.0
 offset_bottom = 1863.0
 color = Color(0.13333334, 0.5176471, 0.14117648, 1)
+
+[node name="CycleJourNuit" type="CanvasModulate" parent="." unique_id=150768317]
+script = ExtResource("3_h2yge")
